@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
 interface SidebarProps {
-  isOpen: boolean;
   onClose: () => void;
   fullName?: string;
   email?: string;
@@ -10,7 +9,6 @@ interface SidebarProps {
 }
 
 function Sidebar({
-  isOpen,
   onClose,
   fullName = 'Usuário',
   email = '',
@@ -110,7 +108,7 @@ function Sidebar({
 
         <div className="sidebar-user">
           {avatarUrl ? (
-            { avatarUrl }
+            <img src={ avatarUrl } alt="Avatar" />
           ) : (
             <span className="profile-avatar avatar-md sidebar-user-avatar">
               {initials || 'US'}

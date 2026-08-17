@@ -85,7 +85,6 @@ function DashboardLayout() {
   return (
     <div className="admin-shell">
       <Sidebar
-        isOpen={isSidebarOpen}
         onClose={closeSidebar}
         fullName={fullName}
         email={email}

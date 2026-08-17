@@ -115,7 +115,7 @@ function Navbar({
               aria-expanded="false"
             >
               {avatarUrl ? (
-                { avatarUrl }
+                <img src={ avatarUrl } alt="Avatar" />
               ) : (
                 <span className="profile-avatar avatar-sm">
                   {initials || 'US'}
