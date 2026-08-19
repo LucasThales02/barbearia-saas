@@ -28,7 +28,8 @@ function Sidebar({
     .join('')
     .toUpperCase();
 
-  const trialDaysRemaining = getTrialDaysRemaining(trialEndsAt);
+    const trialDaysRemaining =
+    getTrialDaysRemaining(trialEndsAt ?? null);
 
   return (
     <>
