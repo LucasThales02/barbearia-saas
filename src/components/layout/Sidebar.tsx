@@ -1,11 +1,14 @@
 import { NavLink } from 'react-router-dom';
+import { getTrialDaysRemaining } from '../../utils/subscription';
 
 interface SidebarProps {
   onClose: () => void;
   fullName?: string;
   email?: string;
   avatarUrl?: string | null;
-  plan?: string;
+  plan?: string | null;
+  subscriptionStatus?: string;
+  trialEndsAt?: string | null;
 }
 
 function Sidebar({
@@ -13,7 +16,9 @@ function Sidebar({
   fullName = 'Usuário',
   email = '',
   avatarUrl,
-  plan = 'basic',
+  plan,
+  subscriptionStatus = 'trial',
+  trialEndsAt,
 }: SidebarProps) {
   const initials = fullName
     .split(' ')
@@ -22,6 +27,8 @@ function Sidebar({
     .slice(0, 2)
     .join('')
     .toUpperCase();
+
+  const trialDaysRemaining = getTrialDaysRemaining(trialEndsAt);
 
   return (
     <>
@@ -108,7 +115,7 @@ function Sidebar({
 
         <div className="sidebar-user">
           {avatarUrl ? (
-            <img src={ avatarUrl } alt="Avatar" />
+            { avatarUrl }
           ) : (
             <span className="profile-avatar avatar-md sidebar-user-avatar">
               {initials || 'US'}
@@ -119,7 +126,18 @@ function Sidebar({
 
           <small>{email}</small>
 
-          <span className="badge text-bg-primary mt-2">Plano {plan}</span>
+          {subscriptionStatus === 'trial' ? (
+            <span className="badge text-bg-warning mt-2">
+              Trial: {trialDaysRemaining}{' '}
+              {trialDaysRemaining === 1 ? 'dia' : 'dias'}
+            </span>
+          ) : subscriptionStatus === 'active' && plan ? (
+            <span className="badge text-bg-success mt-2">Plano {plan}</span>
+          ) : (
+            <span className="badge text-bg-danger mt-2">
+              Assinatura expirada
+            </span>
+          )}
         </div>
 
         <div className="sidebar-footer">

@@ -61,51 +61,6 @@ function App() {
               />
             </button>
 
-            {/* Notificações */}
-            <div className="dropdown">
-              <button
-                className="icon-button"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                aria-label="Notificações"
-              >
-                <span className="notification-dot" />
-
-                <i className="bi bi-bell" aria-hidden="true" />
-              </button>
-
-              <div className="dropdown-menu dropdown-menu-end notification-menu">
-                <div className="dropdown-header fw-bold text-body">
-                  Notificações
-                </div>
-
-                <Link className="dropdown-item" to="/usuarios">
-                  <span className="notification-title">
-                    Novo usuário cadastrado
-                  </span>
-
-                  <span className="notification-time">Há 4 minutos</span>
-                </Link>
-
-                <Link className="dropdown-item" to="/dashboard">
-                  <span className="notification-title">
-                    Meta de receita atingida
-                  </span>
-
-                  <span className="notification-time">Há 32 minutos</span>
-                </Link>
-
-                <Link className="dropdown-item" to="/configuracoes">
-                  <span className="notification-title">
-                    Revisão de segurança concluída
-                  </span>
-
-                  <span className="notification-time">Há 1 hora</span>
-                </Link>
-              </div>
-            </div>
-
             {/* Login, cadastro ou perfil */}
             {isLogged ? (
               <div className="dropdown">

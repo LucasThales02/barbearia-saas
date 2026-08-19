@@ -14,7 +14,12 @@ interface Profile {
   full_name: string | null;
   email: string | null;
   avatar_url: string | null;
-  plan: string | null;
+  plan: 'basic' | 'pro' | 'enterprise' | null;
+  subscription_status: 'trial' | 'active' | 'past_due' | 'canceled' | 'expired';
+  trial_started_at: string | null;
+  trial_ends_at: string | null;
+  subscription_started_at: string | null;
+  subscription_ends_at: string | null;
 }
 
 function DashboardLayout() {
@@ -36,7 +41,20 @@ function DashboardLayout() {
 
       const { data, error } = await supabase
         .from('profiles')
-        .select('id, full_name, email, avatar_url, plan')
+        .select(
+          `
+    id,
+    full_name,
+    email,
+    avatar_url,
+    plan,
+    subscription_status,
+    trial_started_at,
+    trial_ends_at,
+    subscription_started_at,
+    subscription_ends_at
+  `
+        )
         .eq('id', user.id)
         .single();
 
@@ -89,7 +107,9 @@ function DashboardLayout() {
         fullName={fullName}
         email={email}
         avatarUrl={profile?.avatar_url}
-        plan={profile?.plan || 'basic'}
+        plan={profile?.plan}
+        subscriptionStatus={profile?.subscription_status}
+        trialEndsAt={profile?.trial_ends_at}
       />
 
       <div className="admin-main">
