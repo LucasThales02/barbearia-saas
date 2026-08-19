@@ -115,7 +115,7 @@ function Sidebar({
 
         <div className="sidebar-user">
           {avatarUrl ? (
-            { avatarUrl }
+            <img src={ avatarUrl } alt="Avatar"/>
           ) : (
             <span className="profile-avatar avatar-md sidebar-user-avatar">
               {initials || 'US'}
